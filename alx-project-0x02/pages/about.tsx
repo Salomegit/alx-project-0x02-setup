@@ -1,13 +1,16 @@
-import React from 'react'
+import React from "react";
+import Button from "@/components/common/Button";
 
-const about = () => {
+const About = () => {
   return (
-    <div>
-        <h1>
-            This is the about page
-        </h1>
-    </div>
-  )
-}
+    <div className="p-6 space-x-4">
+      <h1 className="text-2xl mb-4">About Page</h1>
 
-export default about
+      <Button label="Small Button" size="small" shape="rounded-sm" />
+      <Button label="Medium Button" size="medium" shape="rounded-md" />
+      <Button label="Large Button" size="large" shape="rounded-full" />
+    </div>
+  );
+};
+
+export default About;

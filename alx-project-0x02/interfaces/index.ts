@@ -10,3 +10,9 @@ export interface ButtonProps {
   shape?: "rounded-sm" | "rounded-md" | "rounded-full";
   onClick?: () => void;
 }
+
+export interface PostProps {
+  content: string;
+  title: string;
+  userId: string;
+}

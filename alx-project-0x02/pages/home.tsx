@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Card from "@/components/common/Card";
 import { CardProps } from "@/interfaces/index";
+import Header from "@/components/layout/Header";
 import PostModal from "@/components/common/PostModal";
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
 
   return (
     <div className="p-6">
+      <Header />
       <h1 className="text-2xl mb-4">This is the home page</h1>
 
       <button

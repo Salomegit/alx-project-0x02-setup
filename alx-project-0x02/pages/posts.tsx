@@ -1,8 +1,12 @@
 import React from 'react'
-
+import Header from '@/components/layout/Header'
 const posts = () => {
   return (
-    <div>posts</div>
+    <div>
+        <Header />
+        <>posts</>
+        
+        </div>
   )
 }
 

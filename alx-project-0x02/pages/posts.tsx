@@ -1,30 +1,31 @@
-import React, { useEffect, useState } from "react";
-import Header from "@/components/layout/Header";
+import React from "react";
 import PostCard from "@/components/common/PostCard";
 import { PostProps } from "@/interfaces";
 
-const Posts: React.FC = () => {
-  const [posts, setPosts] = useState<PostProps[]>([]);
+interface PostsPageProps {
+  posts: PostProps[];
+}
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-      const data = await res.json();
+// ✅ Use getStaticProps
+export const getStaticProps = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const data = await res.json();
 
-      // Map data to match PostProps
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const formattedPosts: PostProps[] = data.map((post: any) => ({
-        title: post.title,
-        content: post.body, // rename "body" → "content"
-        userId: post.userId, // ✅ correct key from API
-      }));
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const formattedPosts: PostProps[] = data.map((post: any) => ({
+    title: post.title,
+    content: post.body,
+    userId: post.userId,
+  }));
 
-      setPosts(formattedPosts);
-    };
+  return {
+    props: {
+      posts: formattedPosts, // passed as props
+    },
+  };
+};
 
-    fetchPosts();
-  }, []);
-
+const PostsPage: React.FC<PostsPageProps> = ({ posts }) => {
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-4">
       <h1 className="text-3xl font-bold mb-6">Posts</h1>
@@ -40,4 +41,4 @@ const Posts: React.FC = () => {
   );
 };
 
-export default Posts;
+export default PostsPage;
